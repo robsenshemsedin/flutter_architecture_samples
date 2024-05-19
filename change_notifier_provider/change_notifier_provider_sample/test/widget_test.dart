@@ -1,30 +1,46 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:change_notifier_provider_sample/models/favorites.dart';
+import 'package:change_notifier_provider_sample/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
-import 'package:change_notifier_provider_sample/main.dart';
+late Favorites favoritesList;
+
+Widget createFavoritesScreen() => ChangeNotifierProvider<Favorites>(
+      create: (context) {
+        favoritesList = Favorites();
+        return favoritesList;
+      },
+      child: const MaterialApp(
+        home: FavoritesPage(),
+      ),
+    );
+
+void addItems() {
+  for (var i = 0; i < 10; i += 2) {
+    favoritesList.addItem(i);
+  }
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Favorites Page Widget Tests', () {
+    testWidgets('Test if ListView shows up', (tester) async {
+      await tester.pumpWidget(createFavoritesScreen());
+      addItems();
+      await tester.pumpAndSettle();
+      expect(find.byType(ListView), findsOneWidget);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    testWidgets('Testing Remove Button', (tester) async {
+      await tester.pumpWidget(createFavoritesScreen());
+      addItems();
+      await tester.pumpAndSettle();
+      var totalItems = tester.widgetList(find.byIcon(Icons.close)).length;
+      await tester.tap(find.byIcon(Icons.close).first);
+      await tester.pumpAndSettle();
+      expect(tester.widgetList(find.byIcon(Icons.close)).length,
+          lessThan(totalItems));
+      expect(find.text('Removed from favorites.'), findsOneWidget);
+    });
   });
 }
