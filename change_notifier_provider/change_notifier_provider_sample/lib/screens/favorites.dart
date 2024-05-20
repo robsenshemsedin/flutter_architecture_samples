@@ -5,9 +5,6 @@ import 'package:provider/provider.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
-
-  static String routeName = 'favorites_page';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

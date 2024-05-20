@@ -3,8 +3,6 @@ import 'package:change_notifier_provider_sample/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  static String routeName = '/';
-
   const HomePage({super.key});
 
   @override
