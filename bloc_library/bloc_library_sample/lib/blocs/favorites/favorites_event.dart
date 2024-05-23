@@ -3,10 +3,10 @@ sealed class FavoritesEvent {
   FavoritesEvent({required this.item});
 }
 
-class AddToFavorites extends FavoritesEvent {
-  AddToFavorites({required super.item});
+class FavoriteAdded extends FavoritesEvent {
+  FavoriteAdded({required super.item});
 }
 
-class RemoveFromFavorites extends FavoritesEvent {
-  RemoveFromFavorites({required super.item});
+class FavoriteRemoved extends FavoritesEvent {
+  FavoriteRemoved({required super.item});
 }
