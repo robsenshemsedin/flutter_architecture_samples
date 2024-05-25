@@ -34,10 +34,10 @@ class ItemTile extends StatelessWidget {
                   !state.contains(itemNo)
                       ? context
                           .read<FavoritesBloc>()
-                          .add(AddToFavorites(item: itemNo))
+                          .add(FavoriteAdded(item: itemNo))
                       : context
                           .read<FavoritesBloc>()
-                          .add(RemoveFromFavorites(item: itemNo));
+                          .add(FavoriteRemoved(item: itemNo));
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(!state.contains(itemNo)

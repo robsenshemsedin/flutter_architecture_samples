@@ -3,19 +3,17 @@ import 'package:bloc/bloc.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, List<int>> {
   FavoritesBloc() : super(<int>[]) {
-    on<AddToFavorites>(_onAddToFavorites);
-    on<RemoveFromFavorites>(_onRemoveFromFavorites);
+    on<FavoriteAdded>(_onAddToFavorites);
+    on<FavoriteRemoved>(_onRemoveFromFavorites);
   }
-  void _onAddToFavorites(AddToFavorites event, Emitter<List<int>> emitter) {
-    final currentState = state;
-    currentState.add(event.item);
-    emitter([...currentState]);
+  void _onAddToFavorites(FavoriteAdded event, Emitter<List<int>> emitter) {
+    final newState = List<int>.from(state)..add(event.item);
+    emitter(newState);
   }
 
   void _onRemoveFromFavorites(
-      RemoveFromFavorites event, Emitter<List<int>> emitter) {
-    final updatedState = state;
-    updatedState.remove(event.item);
-    emitter([...updatedState]);
+      FavoriteRemoved event, Emitter<List<int>> emitter) {
+    final newState = List<int>.from(state)..remove(event.item);
+    emitter(newState);
   }
 }
