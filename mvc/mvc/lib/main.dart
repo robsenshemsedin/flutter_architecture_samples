@@ -1,5 +1,5 @@
-import 'package:bloc_library_sample/app.dart';
 import 'package:flutter/material.dart';
+import 'package:mvc/app.dart';
 
 void main() {
   runApp(const App());
