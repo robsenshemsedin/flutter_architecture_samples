@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mvc/flutter_mvc.dart';
+import 'package:mvc/model.dart';
 import 'package:mvc/screens/favorites.dart';
+import 'package:mvc/screens/home/controller.dart';
 import 'package:mvc/widgets/item_tile.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +31,9 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 100,
-        cacheExtent: 20.0,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        itemBuilder: (context, index) => ItemTile(
-          index,
-          key: UniqueKey(),
-        ),
+      body: Mvc(
+        create: () => HomeScreenController(),
+        model: Favorites(),
       ),
     );
   }

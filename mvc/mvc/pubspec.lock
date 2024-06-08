@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: "706b5707578e0c1b4b7550f64078f0a0f19dec3f50a178ffae7006b0a9ca58fb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -49,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  dart_dependency_injection:
+    dependency: transitive
+    description:
+      name: dart_dependency_injection
+      sha256: a84cd3a98ec20511a88943269ef1d30d0994954325a159286bce8df2ef40dda0
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.3+2"
   fake_async:
     dependency: transitive
     description:
@@ -70,6 +86,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_mvc:
+    dependency: "direct main"
+    description:
+      name: flutter_mvc
+      sha256: "1429d5dc046f07be34b67e831f84fa0783e19f4ef6f8eeced7b63a09eb47dd1a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -226,3 +250,4 @@ packages:
     version: "13.0.0"
 sdks:
   dart: ">=3.3.0 <4.0.0"
+  flutter: ">=1.17.0"
